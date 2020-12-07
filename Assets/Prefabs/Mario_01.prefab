@@ -81,7 +81,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6386509210067173278}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -3.82, z: 0}
+  m_LocalPosition: {x: -0.24, y: -0.95, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6386509211533483470}
@@ -100,6 +100,8 @@ GameObject:
   - component: {fileID: 6386509211533483456}
   - component: {fileID: 6386509211533483462}
   - component: {fileID: 6386509211533483459}
+  - component: {fileID: 1132643858}
+  - component: {fileID: 155762184}
   m_Layer: 0
   m_Name: Mario_01
   m_TagString: Player
@@ -116,7 +118,7 @@ Transform:
   m_GameObject: {fileID: 6386509211533483458}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.107, y: 1.61, z: 0}
-  m_LocalScale: {x: 0.27511, y: 0.27511, z: 0.27511}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6386509210067173279}
   - {fileID: 5365180142642364365}
@@ -160,10 +162,10 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1239242859
+  m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 480b8e0e5da3b224eb66637d863cd10c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c4050fd3ee01c804f8dca6019d8724dd, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -193,7 +195,7 @@ Rigidbody2D:
   m_Material: {fileID: 6200000, guid: a98ff214eda61f54b96e996c9a7a88e7, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!70 &6386509211533483462
 CapsuleCollider2D:
@@ -208,8 +210,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 3.5, y: 6.99}
+  m_Offset: {x: -0.26, y: -0.03}
+  m_Size: {x: 0.86, y: 1.3}
   m_Direction: 0
 --- !u!114 &6386509211533483459
 MonoBehaviour:
@@ -223,14 +225,48 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13498a8aa63855c4581f4e885bd000b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 6
+  speed: 5
   jumpForce: 6
   isGroundedChecker: {fileID: 6386509210067173279}
-  checkGroundRadius: 0
+  checkGroundRadius: 0.1
   groundLayer:
     serializedVersion: 2
     m_Bits: 256
-  fallMultiplier: 2.5
+  fallMultiplier: 2
   lowJumpMultiplier: 2
   rememberGroundedFor: 0
   defaultAdditionalJumps: 1
+  canMove: 1
+  animator: {fileID: 0}
+--- !u!95 &1132643858
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6386509211533483458}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 0f1866808a1801645a6e779917a6f53a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &155762184
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6386509211533483458}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8311bf71ec5d5f5439057d5928663659, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  respawnPoint: {fileID: 0}

@@ -6,6 +6,7 @@ TagManager:
   tags:
   - ViewField
   - Ground
+  - Bullet
   layers:
   - Default
   - TransparentFX
@@ -16,7 +17,7 @@ TagManager:
   - 
   - 
   - GroundLayer
-  - 
+  - Invisible
   - 
   - 
   - 
@@ -49,6 +50,15 @@ TagManager:
   - name: NPCLayer
     uniqueID: 840186055
     locked: 0
+  - name: Enviornment
+    uniqueID: 2007946789
+    locked: 0
   - name: PlayerLayer
     uniqueID: 1239242859
+    locked: 0
+  - name: Water
+    uniqueID: 3493466257
+    locked: 0
+  - name: Ground
+    uniqueID: 3730470339
     locked: 0

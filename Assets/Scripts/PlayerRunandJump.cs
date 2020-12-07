@@ -20,10 +20,16 @@ public class PlayerRunandJump : MonoBehaviour
     public int defaultAdditionalJumps = 1;
     int additionalJumps;
 
+    public bool canMove = true;
+
+    [SerializeField]
+    private Animator animator;
+
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -36,32 +42,53 @@ public class PlayerRunandJump : MonoBehaviour
     }
     void Move()
     {
-        float x = Input.GetAxisRaw("Horizontal");
-        float moveBy = x * speed;
-        rb.velocity = new Vector2(moveBy, rb.velocity.y);
+        if (canMove)
+        {
+            float x = Input.GetAxisRaw("Horizontal");
+            // Debug.Log(x);
+            //flip character
+            if (x != 0)
+            {
+                Vector3 theScale = transform.localScale;
+                theScale.x = x;
+                transform.localScale = theScale;
+            }
+
+            float moveBy = x * speed;
+            animator.SetFloat("Speed", Mathf.Abs(moveBy));
+            rb.velocity = new Vector2(moveBy, rb.velocity.y);
+        }
     }
     void Jump()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && (isGrounded || Time.time - lastTimeGrounded <= rememberGroundedFor || additionalJumps > 0))
+        if (canMove)
         {
-            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
-            additionalJumps--;
+
+            if (Input.GetKeyDown(KeyCode.Space) && (isGrounded || Time.time - lastTimeGrounded <= rememberGroundedFor || additionalJumps > 0))
+            {
+                animator.SetBool("IsJumping", true);
+                SoundManager._instance.PlayerJumpSound();
+                rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+                additionalJumps--;
+            }
         }
     }
 
     void CheckIfGrounded()
     {
         Collider2D colliders = Physics2D.OverlapCircle(isGroundedChecker.position, checkGroundRadius, groundLayer);
-        Debug.Log(colliders);
+        //Debug.Log(colliders);
         if (colliders != null)
         {
             isGrounded = true;
+            animator.SetBool("IsJumping", false);
             additionalJumps = defaultAdditionalJumps;
         }
         else
         {
             if (isGrounded)
             {
+
                 lastTimeGrounded = Time.time;
             }
             isGrounded = false;

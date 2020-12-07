@@ -36,7 +36,7 @@ public class DialogueManager : MonoBehaviour
     public void ShowDialogueWindow(NPC npc)
     {
         ui_DialogueWindow.ActiveWindow();
-        ui_DialogueWindow.SetCharacterName(npc.name);
+        ui_DialogueWindow.SetCharacterName(npc.npcName);
         StartDialogue(npc.dialogue);
     }
 
@@ -47,12 +47,15 @@ public class DialogueManager : MonoBehaviour
 
     public void ShowIndicator(NPC npc)
     {
-        curNpc = npc;
-        var sizeNPC = npc.transform.GetComponent<Renderer>().bounds.size;
-        var sizeIndicator = e_indicator.GetComponent<Renderer>().bounds.size;
-        Vector2 spawnPoint = new Vector2(npc.transform.position.x, npc.transform.position.y + sizeNPC.y / 2 + sizeIndicator.y / 2);
-        e_indicator.transform.position = spawnPoint;
-        e_indicator.gameObject.SetActive(true);
+        if (npc.sentences.Count>0)
+        {
+            curNpc = npc;
+            var sizeNPC = npc.transform.GetComponent<Renderer>().bounds.size;
+            var sizeIndicator = e_indicator.GetComponent<Renderer>().bounds.size;
+            Vector2 spawnPoint = new Vector2(npc.transform.position.x, npc.transform.position.y + sizeNPC.y / 2 + sizeIndicator.y / 2);
+            e_indicator.transform.position = spawnPoint;
+            e_indicator.gameObject.SetActive(true);
+        }
     }
 
     public void HideIndicator(bool isOnCurNpc = false)
